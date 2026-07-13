@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社precious トップページ ワイヤーフレーム案</title>
+<style>
+  :root{
+    --ink:#222; --sub:#666; --line:#c9d0d8; --bg:#eef1f4; --paper:#fff;
+    --accent:#0098d8; --wire:#e2e7ec; --wire-line:#c2cad3; --wire-txt:#8a97a3;
+    --band:#f4f7fa; --note:#fff8e6; --note-line:#e6cf87; --cta:#0098d8;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .doc{max-width:1240px;margin:0 auto;padding:40px 20px 100px;}
+  .dochead{border-bottom:3px solid var(--ink);padding-bottom:16px;margin-bottom:10px;}
+  .dochead .eyebrow{font-size:12px;letter-spacing:.22em;color:var(--accent);font-weight:700;text-transform:uppercase;}
+  .dochead h1{font-size:25px;margin:6px 0 4px;}
+  .dochead .meta{font-size:13px;color:var(--sub);}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--sub);margin:16px 0 28px;}
+  .legend b{color:var(--ink);}
+  .swatch{display:inline-block;width:22px;height:12px;border-radius:2px;vertical-align:middle;margin-right:5px;border:1px solid var(--wire-line);}
+  .split-note{background:#eef6fc;border:1px solid #bcd9ee;border-left:5px solid var(--accent);border-radius:8px;
+    padding:12px 16px;margin:0 0 26px;font-size:12.5px;color:#245a80;}
+
+  .screen{background:var(--paper);border:1px solid var(--line);border-radius:12px;margin:34px 0;overflow:hidden;box-shadow:0 2px 10px rgba(30,50,70,.05);}
+  .screen-h{display:flex;align-items:center;gap:12px;background:#1f3040;color:#fff;padding:11px 18px;}
+  .screen-h .tag{font-size:11px;letter-spacing:.12em;background:var(--accent);padding:2px 9px;border-radius:4px;font-weight:700;}
+  .screen-h .ttl{font-size:15px;font-weight:700;}
+  .screen-h .url{font-size:11.5px;color:#9fd6db;font-family:Consolas,monospace;margin-left:auto;}
+  .screen-b{padding:20px;}
+  .device-note{font-size:11.5px;color:var(--sub);padding:4px 18px 0;background:#1f3040;color:#9fb0bf;}
+
+  .sec{border:1px dashed var(--wire-line);border-radius:8px;margin:12px 0;padding:14px 16px;background:#fdfefe;position:relative;}
+  .sec > .lab{position:absolute;top:-9px;left:12px;background:var(--accent);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.08em;padding:1px 8px;border-radius:9px;}
+  .sec .en{font-size:11px;letter-spacing:.18em;color:var(--accent);font-weight:700;}
+  .sec h3{font-size:16px;margin:2px 0 4px;}
+  .sec p.desc{font-size:12px;color:var(--sub);margin:2px 0 10px;}
+  .intent{font-size:11.5px;color:#3a6ea5;background:#eef6fc;border-left:3px solid var(--accent);padding:5px 10px;border-radius:0 4px 4px 0;margin-top:8px;}
+
+  .wire-box{background:var(--wire);border:1px solid var(--wire-line);border-radius:6px;color:var(--wire-txt);
+    display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;padding:14px;min-height:52px;}
+  .wire-box.tall{min-height:150px;}
+  .row{display:grid;gap:12px;}
+  .r3{grid-template-columns:repeat(3,1fr);}
+  .r-side{grid-template-columns:2fr 1fr;}
+  .txtline{height:9px;background:#dfe5ea;border-radius:3px;margin:6px 0;}
+  .txtline.s{width:55%;} .txtline.m{width:80%;}
+  .btn{display:inline-block;background:var(--cta);color:#fff;font-size:12px;font-weight:700;padding:8px 18px;border-radius:6px;}
+  .btn.ghost{background:#fff;color:var(--cta);border:1.5px solid var(--cta);}
+  .btn.sub{background:#eef1f4;color:var(--ink);border:1px solid var(--line);}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:8px;}
+
+  /* TOP メインビジュアル専用の詳細ワイヤー */
+  .hero-wire{position:relative;border:1.5px solid var(--wire-line);border-radius:8px;overflow:hidden;
+    background:repeating-linear-gradient(45deg,#e6ebf0,#e6ebf0 14px,#dde3e9 14px,#dde3e9 28px);min-height:300px;}
+  .hero-media-tag{position:absolute;top:10px;left:12px;background:#20303e;color:#fff;font-size:10.5px;font-weight:700;
+    letter-spacing:.1em;padding:3px 10px;border-radius:5px;display:flex;align-items:center;gap:6px;}
+  .hero-media-tag .play{width:0;height:0;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;}
+  .hero-note{position:absolute;top:12px;right:14px;font-size:11px;color:#5b6875;background:rgba(255,255,255,.7);padding:2px 8px;border-radius:4px;}
+  .hero-overlay{position:relative;z-index:2;padding:56px 44px 40px;max-width:640px;}
+  .hero-eyebrow{font-size:11px;letter-spacing:.2em;color:var(--accent);font-weight:700;margin-bottom:10px;}
+  .hero-h1{height:26px;background:#c2ccd6;border-radius:4px;margin:9px 0;box-shadow:0 1px 0 #aab6c2;}
+  .hero-h1.w1{width:92%;} .hero-h1.w2{width:70%;}
+  .hero-subcopy{height:11px;background:#d3dae1;border-radius:3px;margin:16px 0 6px;width:80%;}
+  .hero-subcopy.s{width:58%;}
+  .hero-cta{display:flex;gap:12px;margin-top:22px;}
+  .hero-cta .btn{padding:11px 26px;font-size:13px;}
+  .hero-scroll{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);font-size:10.5px;letter-spacing:.18em;color:#5b6875;text-align:center;z-index:2;}
+  .hero-scroll span{display:block;font-size:15px;line-height:1;}
+  .num{display:inline-flex;width:17px;height:17px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:700;align-items:center;justify-content:center;margin-right:5px;vertical-align:middle;}
+  .callouts{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px;}
+  .callouts div{font-size:11px;color:var(--sub);background:#f4f7fa;border:1px solid var(--line);border-radius:6px;padding:6px 8px;}
+
+  .mock-header{display:flex;align-items:center;gap:14px;border:1px solid var(--wire-line);border-radius:6px;padding:10px 14px;background:#fff;}
+  .mock-header .logo{width:120px;height:26px;background:var(--wire);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--wire-txt);}
+  .mock-header nav{display:flex;gap:14px;margin-left:auto;font-size:12px;color:var(--sub);flex-wrap:wrap;}
+  .mock-header nav .cta{background:var(--cta);color:#fff;padding:4px 12px;border-radius:5px;font-weight:700;}
+
+  .memo{background:var(--note);border:1px solid var(--note-line);border-radius:10px;padding:18px 20px;margin:20px 0;}
+  .memo h2{font-size:16px;margin:0 0 10px;}
+  .memo table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  .memo td,.memo th{border:1px solid #e2d19a;padding:7px 10px;vertical-align:top;text-align:left;}
+  .memo th{background:#fbeec2;width:150px;white-space:nowrap;}
+  @media(max-width:820px){ .r3,.r-side,.callouts{grid-template-columns:1fr 1fr;} }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="dochead">
+    <div class="eyebrow">Wireframe ／ TOP ページ 単独版</div>
+    <h1>株式会社precious トップページ ワイヤーフレーム案</h1>
+    <div class="meta">
+      対象: <b>https://precious.ne.jp/</b>（現行WordPress）をリニューアル ／ 第1版 2026-07-01（顧客面談議事録ベース）<br>
+      制作: 株式会社ITLINE（インフォネット様 技術パートナー／プレゼンはネオキャリア様名義） ／ ※参考デザイン未受領のため配色・装飾は未確定（構成・意図のみ提示）。
+    </div>
+  </div>
+
+  <div class="split-note">
+    本ファイルは<b>トップページのワイヤーフレーム</b>です。<b>現段階ではトップのみ</b>をご提示し、下層ページ（サービス・採用等）のワイヤーは今後の工程で作成します。サイトマップは <code>precious_サイトマップ.html</code>。
+  </div>
+
+  <div class="legend">
+    <span><span class="swatch" style="background:var(--wire)"></span>画像/動画などの未確定要素（wire-box）</span>
+    <span><span class="swatch" style="background:var(--cta);border-color:var(--cta)"></span>CTA（問い合わせ/エントリー/資料請求）</span>
+    <span>プレースホルダ文言は「<b>テキストが入ります。</b>」で統一</span>
+    <span>★=新規／◇=追加候補（Worksは今回範囲に含む）</span>
+  </div>
+
+  <!-- デザインメモ -->
+  <div class="memo">
+    <h2>提案デザインメモ（2026-07-01 顧客面談議事録より）</h2>
+    <table>
+      <tr><th>リニューアル方針</th><td>既存資産は流用せず<b>全面刷新</b>。ターゲットは<b>女性20代中心（Webデザイナー／動画編集の育成事業）</b>。トーンは「かっこいい」より<b>白基調で綺麗・親しみ</b>方向（色味は今後決定）。</td></tr>
+      <tr><th>トップの狙い</th><td>①<b>採用強化</b>への導線をトップからも確保。②<b>メインビジュアルに動画</b>（開いた瞬間に自動再生）。会社概要・サービスは過度に動かさない。</td></tr>
+      <tr><th>CTA方針</th><td>全ページ共通で<b>お問い合わせ</b>＋<b>エントリー</b>。加えて<b>資料請求バナー</b>を要所に配置。採用応募は外部ATS（一括管理くん等）へ集約。</td></tr>
+      <tr><th>予算感</th><td>約100万円前後（面談時）。優先度を調整して構成。</td></tr>
+    </table>
+  </div>
+
+  <!-- トップページ -->
+  <div class="screen" id="top">
+    <div class="screen-h"><span class="tag">PAGE 01</span><span class="ttl">トップページ</span><span class="url">/</span></div>
+    <div class="device-note">デバイス: PC（1180px想定）／ファーストビューで「誰向けか」が伝わるゲートウェイ＋動画MV</div>
+    <div class="screen-b">
+
+      <div class="sec"><span class="lab">HEADER</span>
+        <div class="mock-header">
+          <div class="logo">LOGO</div>
+          <nav>
+            <span>Philosophy</span><span>Service</span><span>Company</span><span>Recruit</span><span>Works</span><span>News</span>
+            <span class="cta">お問い合わせ</span><span class="cta">エントリー</span>
+          </nav>
+        </div>
+        <div class="intent">意図: グローバルナビは現行6項目＋Works（実績）。CTA（問い合わせ/エントリー）は右上に常設。追従ヘッダー想定。</div>
+      </div>
+
+      <div class="sec"><span class="lab">MAIN VISUAL</span>
+        <div class="en">HERO / MAIN VISUAL（ファーストビュー）</div>
+        <h3>トップ メインビジュアル</h3>
+        <p class="desc">開いた瞬間に動画が自動再生される全画面ヒーロー。動画の上にキャッチ・サブコピー・CTAを重ねる。</p>
+        <div class="hero-wire">
+          <div class="hero-media-tag"><span class="play"></span>動画（自動再生・ループ）背景</div>
+          <div class="hero-note">画面幅いっぱい（フルワイド）／高さは1画面目安</div>
+          <div class="hero-overlay">
+            <div class="hero-eyebrow">① 動画の上にテキストを重ねる（オーバーレイ）</div>
+            <div class="hero-h1 w1"></div>
+            <div class="hero-h1 w2"></div>
+            <div style="font-size:11px;color:#5b6875;margin:2px 0 0">② メインキャッチコピー（テキストが入ります）</div>
+            <div class="hero-subcopy"></div>
+            <div class="hero-subcopy s"></div>
+            <div style="font-size:11px;color:#5b6875;margin-top:4px">③ サブコピー（テキストが入ります）</div>
+            <div class="hero-cta">
+              <span class="btn">④ エントリー</span>
+              <span class="btn ghost">サービスを見る</span>
+            </div>
+          </div>
+          <div class="hero-scroll"><span>↓</span>⑤ SCROLL</div>
+        </div>
+        <div class="callouts">
+          <div><span class="num">1</span>動画背景：自動再生・ループ・音なし。素材は今後準備（アニメ/動画）</div>
+          <div><span class="num">2</span>メインキャッチ：一番大きく。誰向け・何屋かが一目で伝わる文言</div>
+          <div><span class="num">3</span>サブコピー：キャッチを補足する1〜2行</div>
+          <div><span class="num">4</span>CTA：主要導線（エントリー＝主／サービス＝副）を動画上に配置</div>
+          <div><span class="num">5</span>スクロール誘導：下に続きがあることを示すサイン</div>
+        </div>
+        <div class="intent">意図: 議事録の「開いた瞬間に動画が流れる」を具体化。①〜⑤の重なり順とCTA位置を明示。女性20代に響く白基調・余白広め想定（色・書体・動画素材は参考デザイン受領後に確定）。</div>
+      </div>
+
+      <div class="sec"><span class="lab">NEWS</span>
+        <div class="en">NEWS / お知らせ</div>
+        <h3>お知らせ・プレスリリース</h3>
+        <div class="row">
+          <div class="wire-box" style="justify-content:space-between;text-align:left">2026.00.00　カテゴリ　テキストが入ります。<span class="btn sub">一覧へ</span></div>
+        </div>
+        <div class="intent">意図: 最新3件程度を横断表示。カテゴリ（プレスリリース/セミナー/ブログ 等・◇追加候補）で絞り込み可能に。</div>
+      </div>
+
+      <div class="sec"><span class="lab">SERVICE</span>
+        <div class="en">SERVICE / 事業内容</div>
+        <h3>5つの事業</h3>
+        <p class="desc">アウトソーシング／ITスクール／職業紹介／人材派遣／コンサルティング</p>
+        <div class="row r3">
+          <div class="wire-box tall">事業① 画像＋見出し<br>テキストが入ります。</div>
+          <div class="wire-box tall">事業② 画像＋見出し<br>テキストが入ります。</div>
+          <div class="wire-box tall">事業③ 画像＋見出し<br>テキストが入ります。</div>
+          <div class="wire-box tall">事業④ 画像＋見出し<br>テキストが入ります。</div>
+          <div class="wire-box tall">事業⑤ 画像＋見出し<br>テキストが入ります。</div>
+          <div class="wire-box tall" style="background:#eef6fc;color:#3a6ea5;border-color:#bcd9ee">各事業詳細ページへ★<br>（Service下層）</div>
+        </div>
+        <div class="intent">意図: 各カードから事業個別詳細ページ（★新規）へ遷移。予算に応じ「1ページ集約 ⇔ 個別化」を調整可能な設計。</div>
+      </div>
+
+      <div class="sec"><span class="lab">RECRUIT GATEWAY</span>
+        <div class="en">RECRUIT / 採用強化ゾーン</div>
+        <h3>採用情報（HPからの採用強化）</h3>
+        <div class="row r-side">
+          <div class="wire-box tall">採用イメージ画像（社員の様子）<br>テキストが入ります。</div>
+          <div>
+            <div class="txtline m"></div><div class="txtline"></div><div class="txtline s"></div>
+            <div class="btnrow"><span class="btn">募集要項・エントリー</span><span class="btn ghost">社員インタビュー</span></div>
+          </div>
+        </div>
+        <div class="intent">意図: 議事録で最重要の「採用強化」。トップから採用回遊を促す独立ゾーン。応募ボタンは外部ATS（一括管理くん）へ誘導する設計。</div>
+      </div>
+
+      <div class="sec"><span class="lab">WORKS ★</span>
+        <div class="en">WORKS / 実績・事例（今回範囲）</div>
+        <h3>プロジェクト例・配属実績</h3>
+        <div class="row r3">
+          <div class="wire-box tall">実績① テキストが入ります。</div>
+          <div class="wire-box tall">実績② テキストが入ります。</div>
+          <div class="wire-box tall">実績③ テキストが入ります。</div>
+        </div>
+        <div class="intent">意図: 議事録の「事例・プロジェクト例も含める」方針を反映。派遣・育成事業の信頼醸成として、独立ページ /works/ の抜粋をトップに配置。</div>
+      </div>
+
+      <div class="sec"><span class="lab">CTA</span>
+        <div class="en">CONVERSION</div>
+        <div class="row r3">
+          <div class="wire-box" style="background:#eef6fc;color:#0077b0;border-color:#bcd9ee">お問い合わせ ＞</div>
+          <div class="wire-box" style="background:#eef6fc;color:#0077b0;border-color:#bcd9ee">エントリー（採用）＞</div>
+          <div class="wire-box" style="background:#fff4d6;color:#9a6b00;border-color:#e6cf87">資料請求バナー ＞</div>
+        </div>
+        <div class="intent">意図: 面談提案どおり、フッター直前に3系統CTA（問い合わせ／エントリー／資料請求）を横並び配置。</div>
+      </div>
+
+      <div class="sec"><span class="lab">FOOTER</span>
+        <div class="en">FOOTER</div>
+        <p class="desc">フッターはサイトマップ全展開（会社情報／Service／Recruit／Contact／その他）。詳細は各ページ版・サイトマップを参照。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="font-size:11.5px;color:var(--sub);border-top:1px solid var(--line);padding-top:14px;margin-top:30px">
+    ※本ワイヤーフレームは構成・導線・意図の設計図です。配色・フォント・装飾・写真は<b>参考デザイン受領後のディレクションで確定</b>します。<br>
+    株式会社ITLINE ワイヤーフレーム課／2026-07-01 第1版（顧客面談議事録ベース）／トップページ単独版
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>株式会社precious（デザイン案ブルー｜動画ヒーロー・アニメーション強化版）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+ --ink:#151922; --ink2:#242c38; --paper:#ffffff; --off:#f7fbff; --sub:#68717e; --line:#dceaf5;
+ --g1:#2f7fd1; --g2:#49a6c8; --g3:#9bd1c8;
+ --grad:linear-gradient(100deg,#2f7fd1,#49a6c8 62%,#9bd1c8);
+ --grad2:linear-gradient(100deg,#2f7fd1,#49a6c8);
+ --sans:"Noto Sans JP",sans-serif; --en:"Archivo",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:auto}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1180px,90vw);margin:0 auto}
+.en{font-family:var(--en)}
+.gt{background:none;color:var(--g1)}
+
+/* スクロール進捗バー */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:900;background:var(--grad);box-shadow:0 0 10px rgba(47,127,209,.24)}
+/* カーソル追従ブロブ */
+#cursor{position:fixed;top:0;left:0;width:26px;height:26px;border-radius:50%;background:var(--grad2);pointer-events:none;z-index:899;mix-blend-mode:multiply;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .25s;opacity:0;filter:blur(1px)}
+#cursor.big{width:70px;height:70px;opacity:.9}
+@media(hover:none){#cursor{display:none}}
+
+/* オープニング（ワイプ演出） */
+#opening{position:fixed;inset:0;z-index:1000;background:var(--ink);display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
+#opening.done{opacity:0;visibility:hidden}
+#opening .box{text-align:center}
+#opening .lg{width:88px;margin:0 auto 16px;opacity:0;transform:scale(.4) rotate(-20deg);animation:opLg 1s cubic-bezier(.2,1.4,.4,1) .1s forwards}
+#opening .wm{font-family:var(--en);font-weight:900;font-size:clamp(34px,7vw,64px);letter-spacing:-.01em;position:relative;overflow:hidden}
+#opening .wm span{display:inline-block;background:var(--grad);background-size:200% auto;background-position:0% center;-webkit-background-clip:text;background-clip:text;color:transparent;transform:translateY(105%);animation:opWm .8s cubic-bezier(.2,.9,.2,1) .5s forwards,shine 2.7s cubic-bezier(.22,1,.36,1) .7s forwards}
+#opening .ln{height:2px;width:0;background:var(--grad);margin:14px auto 0;animation:opLn 1s cubic-bezier(.7,0,.2,1) .9s forwards}
+#opening .load{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:#6a6480;margin-top:16px;opacity:0;animation:opFade .6s ease 1.2s forwards}
+@keyframes opLg{to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes opWm{to{transform:translateY(0)}}
+@keyframes opLn{to{width:220px}}
+@keyframes opFade{to{opacity:1}}
+@keyframes shine{from{background-position:0% center}to{background-position:200% center}}
+/* ワイプパネル（開幕時に上下へ） */
+.wipe{position:fixed;left:0;right:0;z-index:995;background:var(--ink);height:50vh;pointer-events:none}
+.wipe.t{top:0}.wipe.b{bottom:0}
+body.revealed .wipe.t{transform:translateY(-100%);transition:transform 1s cubic-bezier(.76,0,.24,1) .1s}
+body.revealed .wipe.b{transform:translateY(100%);transition:transform 1s cubic-bezier(.76,0,.24,1) .1s}
+
+/* ヘッダー */
+header{position:fixed;top:0;left:0;right:0;z-index:200;padding:22px 0;transition:.35s}
+header.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);padding:13px 0;box-shadow:0 4px 24px rgba(24,21,27,.08)}
+header.solid .logo,header.solid nav a{color:var(--ink)}
+header .bar{display:flex;align-items:center;justify-content:space-between}
+header .logo{display:flex;align-items:center;gap:10px;font-family:var(--en);font-weight:800;font-size:22px;color:#fff;transition:.3s}
+header .logo img{width:30px}
+header nav{display:flex;gap:28px;font-weight:700;font-size:14px}
+header nav a{color:#fff;transition:.2s;opacity:.9}header nav a:hover{opacity:1}
+header.solid nav a:hover{color:var(--g1)}
+header .cta{background:var(--grad2);color:#fff;padding:11px 22px;border-radius:8px;font-weight:700;font-size:13.5px;transition:.25s}
+header .cta:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 10px 24px rgba(47,127,209,.22)}
+.burger{display:none;font-size:26px;color:#fff}
+
+/* 動画ヒーロー */
+.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center}
+.hero .movie{position:absolute;inset:0;z-index:0;will-change:transform}
+.hero .movie .fr{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:kb 24s linear infinite}
+.hero .movie .f1{background-image:url(images/service_mv.webp);animation-delay:0s}
+.hero .movie .f2{background-image:url(images/philosophy_mv.webp);animation-delay:6s}
+.hero .movie .f3{background-image:url(images/company_mv.webp);animation-delay:12s}
+.hero .movie .f4{background-image:url(images/recruit_mv.webp);animation-delay:18s}
+@keyframes kb{0%{opacity:0;transform:scale(1.04)}4%{opacity:1}25%{opacity:1;transform:scale(1.16)}29%{opacity:0}100%{opacity:0}}
+.hero .ov{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(20,18,23,.62) 10%,rgba(20,18,23,.32) 52%,rgba(255,255,255,.18))}
+.hero .ov2{position:absolute;inset:0;z-index:1;mix-blend-mode:soft-light;background:linear-gradient(120deg,rgba(47,127,209,.20),rgba(73,166,200,.14) 58%,rgba(155,209,200,.12));animation:hue 12s linear infinite}
+@keyframes hue{50%{filter:hue-rotate(30deg)}}
+.hero .orb{position:absolute;border-radius:50%;filter:blur(70px);z-index:1;opacity:.18}
+.hero .orb1{width:380px;height:380px;background:radial-gradient(circle,var(--g1),transparent 70%);top:-80px;left:-60px;animation:floaty 9s ease-in-out infinite}
+.hero .orb2{width:300px;height:300px;background:radial-gradient(circle,var(--g2),transparent 70%);bottom:-60px;right:8%;animation:floaty 11s ease-in-out infinite reverse}
+@keyframes floaty{50%{transform:translate(30px,-30px)}}
+.hero .inner{position:relative;z-index:3;color:#fff;will-change:transform}
+.hero .badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--en);font-weight:700;font-size:12.5px;letter-spacing:.14em;border:1px solid rgba(255,255,255,.4);border-radius:100px;padding:7px 16px;margin-bottom:26px;opacity:0;animation:up .8s ease 1.3s forwards}
+.hero .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--g1);box-shadow:0 0 12px var(--g1);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35;transform:scale(.8)}}
+.hero h1{font-weight:900;font-size:clamp(40px,7.2vw,92px);line-height:1.14;letter-spacing:.005em}
+.hero h1 .l{display:block;overflow:hidden;padding-bottom:.04em}
+.hero h1 .l>span{display:inline-block;transform:translateY(110%);animation:lup 1s cubic-bezier(.16,1,.3,1) forwards}
+.hero .r1>span{animation-delay:1.35s}.hero .r2>span{animation-delay:1.5s}
+@keyframes lup{to{transform:translateY(0)}}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero p.lead{margin-top:26px;font-size:clamp(15px,1.7vw,18px);color:#f1edf7;max-width:520px;opacity:0;animation:up .9s ease 1.9s forwards}
+.hero .hbtns{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:up .9s ease 2.05s forwards}
+.hero .play{position:absolute;right:6vw;bottom:13vh;z-index:3;display:flex;align-items:center;gap:12px;color:#fff;font-family:var(--en);font-size:12px;letter-spacing:.14em;opacity:0;animation:up .9s ease 2.2s forwards}
+.hero .play .ic{width:56px;height:56px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;position:relative}
+.hero .play .ic::before{content:"";position:absolute;inset:-1px;border-radius:50%;border:1.5px solid var(--g1);animation:ring 2s ease-out infinite}
+@keyframes ring{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.5);opacity:0}}
+.hero .play .ic::after{content:"";border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px}
+.hero .vnote{position:absolute;left:6vw;bottom:6vh;z-index:3;color:rgba(255,255,255,.5);font-size:11px}
+.hero .scrolldown{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:3;width:1px;height:52px;background:linear-gradient(#fff,transparent);overflow:hidden}
+.hero .scrolldown::after{content:"";position:absolute;top:-52px;left:0;width:1px;height:52px;background:var(--g1);animation:sc 1.8s ease-in-out infinite}
+@keyframes sc{to{top:52px}}
+
+.btn{padding:15px 32px;border-radius:9px;font-weight:700;font-size:15px;transition:.28s;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden}
+.btn-grad{background:var(--grad2);background-size:180% auto;color:#fff;box-shadow:0 12px 30px rgba(47,127,209,.20)}
+.btn-grad:hover{background-position:right center;transform:translateY(-3px) scale(1.02);box-shadow:0 18px 40px rgba(47,127,209,.26)}
+.btn-glass{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(6px)}
+.btn-glass:hover{background:rgba(255,255,255,.24);transform:translateY(-3px)}
+
+/* マーキー（流れるテキスト） */
+.marquee{background:linear-gradient(100deg,#172230,#203347 58%,#214047);color:#fff;padding:18px 0;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.marquee .track{display:inline-flex;align-items:center;gap:22px;animation:mq 28s linear infinite}
+.marquee span{font-family:var(--en);font-weight:900;font-size:clamp(30px,3.2vw,42px);line-height:1;letter-spacing:.01em;-webkit-text-stroke:1px rgba(255,255,255,.5);color:transparent;margin:0}
+.marquee span.fill{-webkit-text-stroke:0;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.marquee .dotm{color:var(--g1);-webkit-text-stroke:0;margin:0;font-size:32px}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* セクション */
+section.sec{position:relative;padding:120px 0}
+.sec-h{margin-bottom:56px}
+.sec-h .en2{font-family:var(--en);font-weight:800;font-size:14px;letter-spacing:.14em}
+.sec-h h2{font-weight:900;font-size:clamp(28px,4vw,50px);margin-top:10px;line-height:1.28}
+
+/* 強めのスクロール出現 */
+.reveal{opacity:0;transform:translateY(64px) scale(.97);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal.left{transform:translateX(-70px)}
+.reveal.right{transform:translateX(70px)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}
+.no-js .reveal{opacity:1;transform:none}
+[data-par]{will-change:transform}
+
+/* メッセージ */
+.msg{background:var(--off)}
+.msg .big{font-weight:900;font-size:clamp(28px,5vw,64px);line-height:1.4}
+.msg .big .gt{background:none;color:var(--g1)}
+.msg p{color:#5f5872;max-width:600px;margin-top:24px;font-size:15px}
+
+/* 事業（大番号パララックス＋スライド） */
+.biz{background:var(--paper);overflow:hidden}
+.biz .row{display:grid;grid-template-columns:180px 1fr auto;gap:26px;align-items:center;padding:34px 10px;border-top:1px solid var(--line);transition:.35s;position:relative}
+.biz .row:last-child{border-bottom:1px solid var(--line)}
+.biz .row:hover{padding-left:26px;background:linear-gradient(90deg,rgba(47,127,209,.04),transparent)}
+.biz .no{font-family:var(--en);font-weight:900;font-size:88px;line-height:.8;background:var(--grad2);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.18;transition:.35s}
+.biz .row:hover .no{opacity:1}
+.biz .row h3{font-weight:900;font-size:25px;display:flex;align-items:center;gap:14px}
+.biz .row h3 .en3{font-family:var(--en);font-size:12px;color:var(--sub);font-weight:700;letter-spacing:.1em}
+.biz .row p{color:#6b6579;font-size:14px;margin-top:4px;max-width:640px}
+.biz .row .arw{font-family:var(--en);color:var(--g2);font-weight:800;font-size:22px;opacity:0;transform:translateX(-14px);transition:.3s}
+.biz .row:hover .arw{opacity:1;transform:none}
+
+/* 事例導線 */
+.works-sec{background:#091523;color:#fff;overflow:hidden}
+.works-sec::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(47,127,209,.18),transparent 58%),linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:auto,72px 72px,72px 72px}
+.works-sec .works-grid{position:relative;z-index:2;display:grid;grid-template-columns:.92fr 1.08fr;gap:54px;align-items:center}
+.works-sec .sec-h{margin-bottom:28px}
+.works-sec .sec-h h2{font-size:clamp(30px,4vw,52px)}
+.works-sec p{color:rgba(255,255,255,.78);max-width:560px}
+.works-sec .case-list{display:grid;gap:12px}
+.works-sec .case-link{display:grid;grid-template-columns:84px 1fr auto;gap:20px;align-items:center;padding:20px 22px;border:1px solid rgba(255,255,255,.14);border-radius:8px;background:rgba(255,255,255,.05);transition:.25s}
+.works-sec .case-link:hover{transform:translateX(6px);border-color:rgba(73,166,200,.65);background:rgba(73,166,200,.12)}
+.works-sec .case-link strong{font-family:var(--en);color:var(--g2);letter-spacing:.12em}
+.works-sec .case-link h3{font-size:20px}
+.works-sec .case-link span{color:rgba(255,255,255,.48);font-family:var(--en);font-weight:900}
+.works-sec .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+
+/* クリエイティブ育成 */
+.creative{background:linear-gradient(135deg,#fff 0%,#f7fbff 58%,#f6fcfb 100%);color:var(--ink);position:relative;overflow:hidden}
+.creative .glow{position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(47,127,209,.075),transparent 70%);top:-160px;right:-120px;filter:blur(34px);will-change:transform}
+.creative .creative-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+.creative .en2{font-family:var(--en);font-weight:800;letter-spacing:.14em;font-size:14px}
+.creative h2{font-weight:900;font-size:clamp(24px,3vw,36px);line-height:1.38;margin:12px 0 18px}
+.creative h2 .line{display:block;white-space:nowrap}
+.creative p{color:#625a70;font-size:15px}
+.creative .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.creative .tag{border:1px solid rgba(47,127,209,.18);border-radius:100px;padding:8px 18px;font-size:13.5px;font-weight:700;transition:.25s;background:rgba(255,255,255,.84)}
+.creative .tag:hover{border-color:transparent;background:var(--grad2);transform:translateY(-3px)}
+.creative .tag.on{background:var(--grad2);border-color:transparent}
+.creative .pic{border-radius:20px;overflow:hidden;box-shadow:0 30px 70px rgba(46,36,48,.12);aspect-ratio:5/4;position:relative;background:#eef7fc}
+.creative .pic img,.creative .pic video{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform 1.1s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.creative .pic:hover img,.creative .pic:hover video{transform:scale(1.045)}
+.creative .pic .pl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.creative .pic .pl .ic{width:78px;height:78px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.5);position:relative}
+.creative .pic .pl .ic::before{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid #fff;animation:ring 2.4s ease-out infinite}
+.creative .pic .pl .ic::after{content:"";border-left:18px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+
+/* 数字 */
+.stats{background:var(--off);text-align:center}
+.stats .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.stats .st{transition:.3s}
+.stats .st:hover{transform:translateY(-8px)}
+.stats .st .n{font-family:var(--en);font-weight:900;font-size:clamp(40px,6vw,70px);line-height:1;background:var(--grad2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats .st .n small{font-size:.4em}
+.stats .st .l{margin-top:12px;font-weight:700;color:var(--ink);font-size:14px}
+
+/* CTA */
+.cta-sec{background:linear-gradient(135deg,#17212d 0%,#203247 52%,#263c45 100%);color:#fff;text-align:center;position:relative;overflow:hidden}
+.cta-sec .g{position:absolute;inset:0;background:var(--grad);opacity:.13;animation:hue 10s linear infinite}
+.cta-sec .inner{position:relative;z-index:2}
+.cta-sec h2{font-weight:900;font-size:clamp(30px,5.4vw,68px);line-height:1.24}
+.cta-sec p{color:#cfcadd;margin:18px 0 36px}
+
+footer{background:#0f0d17;color:#c8c3d6;padding:56px 0 28px}
+footer .top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px}
+footer .logo{display:flex;align-items:center;gap:10px;font-family:var(--en);font-weight:800;font-size:22px;color:#fff}
+footer .logo img{width:30px}
+footer .cat{font-family:var(--en);font-size:11px;letter-spacing:.16em;margin-bottom:12px;color:var(--g2)}
+footer .col a{display:block;color:#a8a2ba;font-size:13.5px;padding:5px 0;transition:.2s}footer .col a:hover{color:#fff}
+footer .links{display:flex;gap:56px;flex-wrap:wrap}
+footer .cr{margin-top:38px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:var(--en);font-size:12px;color:#7a7488}
+.demo-note{position:fixed;left:14px;bottom:14px;z-index:300;background:var(--grad2);color:#fff;font-size:11px;padding:7px 14px;border-radius:100px;font-weight:700;box-shadow:0 8px 20px rgba(24,21,27,.12)}
+
+@media(max-width:860px){
+ header nav,header .cta{display:none}.burger{display:block}
+ .hero h1{font-size:clamp(34px,9.7vw,40px);line-height:1.18;letter-spacing:0}
+ .hero .badge{font-size:11px;letter-spacing:.11em;padding:7px 12px}
+ .creative h2 .line{white-space:normal}
+ .creative .creative-grid{grid-template-columns:1fr;gap:34px}.creative .pic{order:-1}
+ .works-sec .works-grid{grid-template-columns:1fr;gap:32px}
+ .works-sec .case-link{grid-template-columns:1fr auto;gap:10px}
+ .works-sec .case-link strong{grid-column:1/3}
+ .biz .row{grid-template-columns:80px 1fr;gap:14px}.biz .no{font-size:52px}.biz .row .arw{display:none}
+ .stats .grid{grid-template-columns:1fr 1fr;gap:34px}
+ .hero .play{display:none}
+ section.sec{padding:78px 0}
+}
+</style>
+</head>
+<body class="no-js">
+
+<div id="progress"></div>
+<div id="cursor"></div>
+
+<!-- オープニング -->
+<div id="opening"><div class="box">
+ <img class="lg" src="images/precious_logo.png" alt="precious">
+ <div class="wm en"><span>precious</span></div>
+ <div class="ln"></div>
+ <div class="load en">CREATIVE CAREER</div>
+</div></div>
+<div class="wipe t"></div><div class="wipe b"></div>
+
+<!-- ヘッダー -->
+<header id="hd">
+ <div class="wrap bar">
+  <a href="precious_デザイン案ブルー.html" class="logo"><img src="images/precious_logo.png" alt="">precious</a>
+  <nav><a href="blue/philosophy.html">Philosophy</a><a href="blue/service.html">Service</a><a href="blue/company.html">Company</a><a href="blue/recruit.html">Recruit</a><a href="blue/works.html">Works</a><a href="blue/news.html">News</a><a href="blue/contact.html">Contact</a></nav>
+  <a href="blue/entry.html" class="cta">エントリー</a>
+  <span class="burger">☰</span>
+ </div>
+</header>
+
+<!-- 動画ヒーロー -->
+<section class="hero" id="top">
+ <div class="movie" data-par="0.25"><div class="fr f1"></div><div class="fr f2"></div><div class="fr f3"></div><div class="fr f4"></div></div>
+ <div class="ov"></div><div class="ov2"></div>
+ <div class="orb orb1"></div><div class="orb orb2"></div>
+ <div class="wrap inner" data-par="-0.12">
+  <span class="badge"><span class="dot"></span>PRECIOUS — CREATIVE CAREER</span>
+  <h1><span class="l r1"><span>つくる人に、なる。</span></span><span class="l r2"><span class="gt">precious で。</span></span></h1>
+  <p class="lead">Webデザイン、動画編集、IT。未経験からでも「つくる仕事」へ。テクノロジーと人材の力で、あなたの目標を映像のように動かす。</p>
+  <div class="hbtns">
+   <a href="blue/entry.html" class="btn btn-grad">採用エントリー →</a>
+   <a href="blue/recruit.html" class="btn btn-glass">採用情報を見る</a>
+  </div>
+ </div>
+ <div class="play"><span class="ic"></span><span>SHOWREEL</span></div>
+ <div class="vnote">※ 背景は現サイト写真によるイメージ映像です（本番は実写ムービーに差し替え）</div>
+ <div class="scrolldown"></div>
+</section>
+
+<!-- マーキー -->
+<div class="marquee" aria-hidden="true">
+ <div class="track">
+  <span>WEB DESIGN</span><span class="dotm">✦</span><span class="fill">動画編集</span><span class="dotm">✦</span><span>IT SCHOOL</span><span class="dotm">✦</span><span class="fill">CREATIVE CAREER</span><span class="dotm">✦</span>
+  <span>WEB DESIGN</span><span class="dotm">✦</span><span class="fill">動画編集</span><span class="dotm">✦</span><span>IT SCHOOL</span><span class="dotm">✦</span><span class="fill">CREATIVE CAREER</span><span class="dotm">✦</span>
+ </div>
+</div>
+
+<!-- メッセージ -->
+<section class="sec msg" id="msg">
+ <div class="wrap reveal">
+  <div class="big">世の中に、<span class="gt">価値を示し続ける</span>。<br>すべてのヒトが描いたキャリアを、<br>かたちにする。</div>
+  <p>「働かされる」から「自ら描く」へ。一人ひとりのキャリア形成に真摯に向き合い、技術と教育で、あなたの「つくりたい」を仕事にする場所をつくります。</p>
+ </div>
+</section>
+
+<!-- 事業 -->
+<section class="sec biz" id="biz">
+ <div class="wrap">
+  <div class="sec-h reveal"><div class="en2 gt">OUR BUSINESS</div><h2>5つの事業</h2></div>
+  <div class="rows">
+   <div class="row reveal left"><div class="no en" data-par="0.06">01</div><div><h3>アウトソーシング<span class="en3">OUTSOURCING</span></h3><p>若手から中堅までのエンジニアで、最適な技術ソリューションをご提供します。</p></div><span class="arw">→</span></div>
+   <div class="row reveal left d1"><div class="no en" data-par="0.06">02</div><div><h3>ITスクール<span class="en3">IT SCHOOL</span></h3><p>自社教材「EdTech」で、Webデザイン・動画編集・プログラミングを学べます。</p></div><span class="arw">→</span></div>
+   <div class="row reveal left d2"><div class="no en" data-par="0.06">03</div><div><h3>職業紹介<span class="en3">PLACEMENT</span></h3><p>経験豊富なITエンジニアを、企業様のご要望に沿ってご紹介します。</p></div><span class="arw">→</span></div>
+   <div class="row reveal left d3"><div class="no en" data-par="0.06">04</div><div><h3>人材派遣<span class="en3">DISPATCH</span></h3><p>独自の管理体制で、勤怠の安定した人員を迅速にご提案します。</p></div><span class="arw">→</span></div>
+   <div class="row reveal left d4"><div class="no en" data-par="0.06">05</div><div><h3>コンサルティング<span class="en3">CONSULTING</span></h3><p>多様なノウハウ・スキルを持った社員が、あらゆる分野をサポートします。</p></div><span class="arw">→</span></div>
+  </div>
+ </div>
+</section>
+
+<!-- 事例 -->
+<section class="sec works-sec" id="works">
+ <div class="wrap works-grid">
+  <div class="reveal left">
+   <div class="sec-h">
+    <div class="en2 gt">WORKS</div>
+    <h2>事業実績・事例を見る。</h2>
+   </div>
+   <p>派遣、育成、紹介の実績や配属事例をまとめ、preciousがどのように人と企業をつないでいるかを具体的に見せます。</p>
+   <div class="actions">
+    <a href="blue/works.html" class="btn btn-grad">事例一覧を見る →</a>
+    <a href="blue/works-case.html" class="btn btn-glass">個別事例を見る</a>
+   </div>
+  </div>
+  <div class="case-list reveal right">
+   <a class="case-link" href="blue/works-case.html"><strong>CASE 01</strong><h3>Web制作チーム配属事例</h3><span>→</span></a>
+   <a class="case-link" href="blue/works-case.html"><strong>CASE 02</strong><h3>動画編集支援事例</h3><span>→</span></a>
+   <a class="case-link" href="blue/works-case.html"><strong>CASE 03</strong><h3>IT人材提案事例</h3><span>→</span></a>
+  </div>
+ </div>
+</section>
+
+<!-- クリエイティブ育成 -->
+<section class="sec creative" id="creative">
+ <div class="glow" data-par="0.2"></div>
+ <div class="wrap creative-grid">
+  <div class="ctxt reveal left">
+   <div class="en2 gt">CREATIVE ACADEMY</div>
+   <h2><span class="line">未経験から、<span class="gt">つくる側</span>へ。</span><span class="line">Webデザイン・動画編集。</span></h2>
+   <p>ITスクール「EdTech」で、プログラミングだけでなく<strong style="color:var(--g1)">Webデザイン・動画編集</strong>の育成に注力。20代・未経験からクリエイティブ職を目指すあなたを、現場と教育の両輪でサポートします。あなたの「つくりたい」を、映像のように動かそう。</p>
+   <div class="tags">
+    <span class="tag on">Webデザイナー育成</span><span class="tag on">動画編集</span><span class="tag">プログラミング</span><span class="tag">20代・未経験歓迎</span><span class="tag">女性が活躍</span>
+   </div>
+  </div>
+  <div class="pic reveal right"><img src="images/gen_creative_c_blue_v1.png" alt="明るいスタジオでWebデザインと動画編集を学ぶ若手メンバー"></div>
+ </div>
+</section>
+
+<!-- 数字 -->
+<section class="sec stats" id="stats">
+ <div class="wrap">
+  <div class="sec-h reveal" style="text-align:center;margin-bottom:44px"><div class="en2 gt">BY THE NUMBERS</div><h2>数字で見るprecious</h2></div>
+  <div class="grid">
+   <div class="st reveal d1"><div class="n" data-count="5"><span>0</span></div><div class="l">事業領域</div></div>
+   <div class="st reveal d2"><div class="n" data-count="2"><span>0</span><small>職種</small></div><div class="l">Web・動画のクリエイティブ</div></div>
+   <div class="st reveal d3"><div class="n" data-count="6"><span>0</span><small>割</small></div><div class="l">20代の若手比率 ※</div></div>
+   <div class="st reveal d4"><div class="n" data-count="100"><span>0</span><small>%</small></div><div class="l">キャリア相談対応</div></div>
+  </div>
+  <p class="reveal" style="color:var(--sub);font-size:11.5px;margin-top:24px">※ 数値はデザイン案のサンプルです（本番は実数値に差し替え）。</p>
+ </div>
+</section>
+
+<!-- CTA -->
+<section class="sec cta-sec" id="contact">
+ <div class="g"></div>
+ <div class="wrap inner reveal">
+  <h2>つくる人に、なろう。</h2>
+  <p>採用エントリー・スクールのご相談・お問い合わせ、お気軽にどうぞ。</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+   <a href="blue/entry.html" class="btn btn-grad">採用にエントリー</a>
+   <a href="blue/contact.html" class="btn btn-glass">スクールの相談をする</a>
+  </div>
+ </div>
+</section>
+
+<footer id="company">
+ <div class="wrap">
+  <div class="top">
+   <div>
+    <div class="logo"><img src="images/precious_logo.png" alt="">precious</div>
+    <p style="color:#7a7488;font-size:13px;margin-top:14px;max-width:320px">株式会社precious<br>つくる人に、なる。</p>
+   </div>
+   <div class="links">
+    <div class="col"><div class="cat">GLOBAL</div><a href="blue/philosophy.html">Philosophy</a><a href="blue/service.html">Service</a><a href="blue/company.html">Company</a><a href="blue/recruit.html">Recruit</a><a href="blue/works.html">Works</a><a href="blue/news.html">News</a><a href="blue/contact.html">Contact</a></div>
+    <div class="col"><div class="cat">SERVICE</div><a href="blue/service-outsourcing.html">アウトソーシング</a><a href="blue/service-it-school.html">ITスクール</a><a href="blue/service-placement.html">職業紹介</a><a href="blue/service-dispatch.html">人材派遣</a><a href="blue/service-consulting.html">コンサルティング</a></div>
+    <div class="col"><div class="cat">CANDIDATE</div><a href="blue/recruit-training.html">研修・育成</a><a href="blue/works-case.html">個別事例</a><a href="blue/category-seminar.html">セミナー</a><a href="blue/category-event.html">イベント</a><a href="blue/category-blog.html">ブログ</a></div>
+    <div class="col"><div class="cat">FOOTER</div><a href="blue/contact.html">Contact</a><a href="blue/entry.html">Entry</a><a href="blue/privacy-policy.html">Privacy Policy</a><a href="blue/disclosure.html">Disclosure</a></div>
+   </div>
+  </div>
+  <div class="cr"><span>© 2026 precious inc.</span><span style="color:var(--g2)">DESIGN PROTOTYPE — 案ブルー（動画ヒーロー・アニメ強化版）</span></div>
+ </div>
+</footer>
+
+<div class="demo-note">デザイン案ブルー｜動画ヒーロー（アニメーション強化版）</div>
+
+<script>
+(function(){
+ var d=document, w=window;
+ d.body.classList.remove('no-js');
+
+ // オープニング → ワイプ開幕
+ var op=d.getElementById('opening');
+ // Opening: wait for the wordmark fill before showing the page.
+ var op=d.getElementById('opening'), openingDone=false, openingCanClose=false;
+ function reveal(){
+  if(openingDone)return;
+  openingDone=true;
+  d.body.classList.add('revealed');
+  if(op)op.classList.add('done');
+ }
+ setTimeout(function(){openingCanClose=true;},3500);
+ w.addEventListener('load',function(){setTimeout(reveal,3800);});
+ setTimeout(reveal,5000);
+ if(op)op.addEventListener('click',function(){if(openingCanClose)reveal();});
+
+ // スクロール進捗バー
+ var pg=d.getElementById('progress');
+ // カーソル追従
+ var cur=d.getElementById('cursor'),cx=0,cy=0,tx=0,ty=0,hasCur=w.matchMedia('(hover:hover)').matches;
+ if(hasCur&&cur){
+  w.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;cur.style.opacity=.9;},{passive:true});
+  d.querySelectorAll('a,button,.btn,.card,.tag,.play,.pic').forEach(function(el){
+   el.addEventListener('mouseenter',function(){cur.classList.add('big')});
+   el.addEventListener('mouseleave',function(){cur.classList.remove('big')});
+  });
+  (function loop(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(loop);})();
+ }
+
+ // ヘッダー solid
+ var hd=d.getElementById('hd');
+ // パララックス要素
+ var pars=[].slice.call(d.querySelectorAll('[data-par]'));
+ var ticking=false;
+ function onScroll(){
+  var y=w.scrollY||w.pageYOffset;
+  // 進捗
+  var h=d.documentElement.scrollHeight-w.innerHeight;
+  if(pg)pg.style.width=(h>0?(y/h*100):0)+'%';
+  // ヘッダー
+  if(y>w.innerHeight*0.62)hd.classList.add('solid');else hd.classList.remove('solid');
+  // パララックス
+  var vh=w.innerHeight;
+  pars.forEach(function(el){
+   var r=el.getBoundingClientRect();var center=r.top+r.height/2;var off=(center-vh/2);
+   var sp=parseFloat(el.getAttribute('data-par'))||0;
+   el.style.transform='translate3d(0,'+(off*sp*-1).toFixed(1)+'px,0)';
+  });
+  ticking=false;
+ }
+ w.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(onScroll);ticking=true;}},{passive:true});
+ onScroll();
+
+ // スクロール出現
+ var els=[].slice.call(d.querySelectorAll('.reveal'));
+ if('IntersectionObserver' in w){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+  els.forEach(function(el){io.observe(el);});
+  w.addEventListener('load',function(){setTimeout(function(){els.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<w.innerHeight)el.classList.add('in');});},1500);});
+ }else{els.forEach(function(el){el.classList.add('in');});}
+
+ // 数字カウントアップ
+ function countUp(el){var t=+el.getAttribute('data-count'),s=el.querySelector('span'),st=null;
+  function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/1400,1);var e=1-Math.pow(1-p,3);s.textContent=Math.floor(e*t);if(p<1)requestAnimationFrame(step);else s.textContent=t;}
+  requestAnimationFrame(step);}
+ var nums=[].slice.call(d.querySelectorAll('[data-count]'));
+ if('IntersectionObserver' in w){
+  var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target);io2.unobserve(e.target);}});},{threshold:.5});
+  nums.forEach(function(n){io2.observe(n);});
+ }else{nums.forEach(function(n){n.querySelector('span').textContent=n.getAttribute('data-count');});}
+})();
+</script>
+</body>
+</html>

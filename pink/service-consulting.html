@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>コンサルティング事業 | precious デザイン案ピンク</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#ff1f8a;--accent2:#ff75bf;--accent3:#ffd5eb;--ink:#101219;--bg:#fffafd;--paper:#fff;--sub:#68717e;--line:#e6edf4;--footer:#140d14;--hero-bg:linear-gradient(118deg,#fff9fc 0%,#fff0f7 48%,#ffe4f1 100%);--hero-ink:#141018;--hero-sub:#69535f;--hero-grid:rgba(255,31,138,.14);--hero-shade:rgba(255,31,138,.16);--grad:linear-gradient(105deg,var(--accent),var(--accent2) 62%,var(--accent3));--sans:"Noto Sans JP",sans-serif;--en:"Archivo",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.8;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}.wrap{width:min(1160px,90vw);margin:0 auto}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.header-bar{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:10px;font-family:var(--en);font-weight:900;font-size:24px}.brand img{width:31px}.nav{display:flex;gap:24px;font-family:var(--en);font-weight:800;font-size:14px}.nav a{opacity:.78}.nav a:hover,.nav a[aria-current=page]{color:var(--accent);opacity:1}.header-entry{background:var(--grad);color:#fff;padding:12px 22px;border-radius:8px;font-weight:900;box-shadow:0 12px 24px color-mix(in srgb,var(--accent) 22%,transparent)}
+.hero{position:relative;overflow:hidden;background:var(--hero-bg);color:var(--hero-ink);border-bottom:1px solid var(--line);isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--hero-shade) 0%,rgba(255,255,255,0) 56%),linear-gradient(var(--hero-grid) 1px,transparent 1px),linear-gradient(90deg,var(--hero-grid) 1px,transparent 1px);background-size:auto,72px 72px,72px 72px;opacity:.92;z-index:-2}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:var(--grad);z-index:3}
+.hero-inner{position:relative;display:grid;grid-template-columns:minmax(0,.92fr) minmax(390px,1.08fr);gap:46px;align-items:center;min-height:560px;padding:78px 0}
+.hero-copy{position:relative;z-index:2;padding:12px 0}
+.eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--en);font-weight:900;letter-spacing:.16em;color:var(--accent);font-size:12px;text-transform:uppercase}
+.eyebrow::after{content:"";width:72px;height:2px;background:var(--grad)}
+.hero h1{font-size:clamp(30px,4.2vw,54px);line-height:1.12;margin:14px 0 18px;font-weight:900;letter-spacing:0;text-wrap:balance}
+.hero p{max-width:610px;color:var(--hero-sub);font-size:clamp(15px,1.4vw,17px);line-height:1.95}
+.hero-media{position:relative;margin:0;height:clamp(340px,44vw,500px);overflow:hidden;background:#eef4f8;box-shadow:0 34px 82px rgba(18,24,32,.24);clip-path:polygon(9% 0,100% 0,92% 100%,0 100%)}
+.hero-media::before{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.48);z-index:2;pointer-events:none}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,0,0,.1),color-mix(in srgb,var(--accent) 24%,transparent));z-index:1;pointer-events:none}
+.hero-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.03)}
+.hero-media figcaption{position:absolute;right:18px;bottom:16px;z-index:3;color:#fff;font-family:var(--en);font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;text-shadow:0 8px 18px rgba(0,0,0,.34)}
+.theme-pink .hero::before{background:linear-gradient(90deg,rgba(255,255,255,.74) 0%,rgba(255,255,255,.2) 54%),linear-gradient(var(--hero-grid) 1px,transparent 1px),linear-gradient(90deg,var(--hero-grid) 1px,transparent 1px);background-size:auto,68px 68px,68px 68px}
+.theme-pink .hero-media{clip-path:polygon(0 0,96% 0,100% 86%,8% 100%,0 72%);box-shadow:0 34px 80px rgba(255,31,138,.18)}
+.theme-pink .hero-media::before{border-color:rgba(255,255,255,.72)}
+.theme-pink .hero-media::after{background:linear-gradient(120deg,rgba(255,255,255,.04),rgba(255,31,138,.22))}
+.section{padding:76px 0;border-bottom:1px solid var(--line)}.section-head{width:min(720px,90vw);margin:0 auto 32px;text-align:center}.section-head h2{margin:8px 0 0;font-size:clamp(24px,3vw,34px);line-height:1.32;text-wrap:balance}.kicker{font-family:var(--en);font-weight:900;letter-spacing:.16em;color:var(--accent);font-size:12px;text-transform:uppercase}.lead-block{width:min(820px,90vw);margin:0 auto;color:#56616f;font-size:17px}.card-grid{width:min(1080px,90vw);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{position:relative;display:block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:24px;min-height:210px;box-shadow:0 16px 34px rgba(18,24,32,.05);transition:.2s}.card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 24px 42px rgba(18,24,32,.08)}.card-badge{position:absolute;right:16px;top:16px;border:1px solid color-mix(in srgb,var(--accent) 36%,#fff);border-radius:999px;padding:3px 9px;color:var(--accent);font-size:11px;font-weight:900;background:color-mix(in srgb,var(--accent) 6%,#fff)}.card-en{font-family:var(--en);font-weight:900;color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase}.card h3{font-size:20px;line-height:1.45;margin:12px 0}.card p{color:#5c6672;font-size:14px;margin:0}.clean-list{width:min(860px,90vw);margin:0 auto;padding:0;list-style:none}.clean-list li{padding:17px 0 17px 28px;border-bottom:1px solid var(--line);position:relative}.clean-list li::before{content:"";position:absolute;left:0;top:29px;width:10px;height:10px;border-radius:50%;background:var(--accent)}.table-wrap{width:min(920px,90vw);margin:0 auto;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:8px}table{width:100%;border-collapse:collapse}th,td{padding:18px 20px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{width:210px;color:var(--accent);font-weight:900}tr:last-child th,tr:last-child td{border-bottom:0}.steps{width:min(940px,90vw);margin:0 auto;display:grid;gap:14px}.step{display:grid;grid-template-columns:120px 1fr;gap:22px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:8px;padding:22px}.step strong{font-family:var(--en);font-size:30px;color:var(--accent)}.step h3{margin:0 0 6px;font-size:20px}.step p{margin:0;color:#5c6672}.form{width:min(760px,90vw);margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:8px;padding:28px;display:grid;gap:14px}.field{display:grid;gap:6px}.field span{font-weight:900}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:6px;padding:13px 14px;font:inherit;background:#fbfdff}.field textarea{min-height:132px}.button{display:inline-flex;justify-content:center;background:var(--grad);color:#fff;border:0;border-radius:8px;padding:14px 24px;font-weight:900}.note{width:min(860px,90vw);margin:28px auto 0;padding:18px 20px;background:color-mix(in srgb,var(--accent) 7%,#fff);border-left:4px solid var(--accent);color:#4f5965}.related{width:min(960px,90vw);margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}.related a{border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:900}.related a:hover{border-color:var(--accent);color:var(--accent)}
+.footer{background:var(--footer);color:#fff;padding:62px 0 28px}.footer-grid{display:grid;grid-template-columns:1.15fr 2.4fr;gap:48px}.footer .brand{color:#fff}.footer p{color:rgba(255,255,255,.64);font-size:13px}.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}.footer h3{font-family:var(--en);font-size:12px;letter-spacing:.16em;color:var(--accent3);text-transform:uppercase}.footer a{display:block;color:rgba(255,255,255,.72);padding:4px 0;font-size:14px}.footer a:hover{color:#fff}.copy{margin-top:40px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:rgba(255,255,255,.48);font-family:var(--en);font-size:12px}
+@media(max-width:900px){.nav{display:none}.hero-inner{grid-template-columns:1fr;gap:30px;min-height:auto;padding:54px 0 62px}.hero h1{font-size:clamp(28px,8.2vw,38px)}.hero-media{height:300px;clip-path:none;border-radius:8px}.hero-media::before{inset:12px}.card-grid{grid-template-columns:1fr}.footer-grid,.footer-cols{grid-template-columns:1fr}.step{grid-template-columns:1fr}.header-entry{padding:10px 16px}.section{padding:58px 0}.section-head h2{font-size:clamp(23px,7vw,31px)}}
+</style>
+</head>
+<body class="theme-pink">
+<header class="site-header">
+  <div class="wrap header-bar">
+    <a class="brand" href="../precious_デザイン案ピンク.html"><img src="../images/precious_logo.png" alt="">precious</a>
+    <nav class="nav" aria-label="グローバルナビゲーション"><a href="philosophy.html">Philosophy</a><a href="service.html">Service</a><a href="company.html">Company</a><a href="recruit.html">Recruit</a><a href="works.html">Works</a><a href="news.html">News</a><a href="contact.html">Contact</a></nav>
+    <a class="header-entry" href="entry.html">Entry</a>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <div class="eyebrow">Consulting</div>
+        <h1>コンサルティング事業</h1>
+        <p>採用、教育、業務改善など、現場力と利益改善の両面から企業活動を支援します。</p>
+      </div>
+      <figure class="hero-media"><img src="../images/service_mv.webp" alt=""><figcaption>Consulting</figcaption></figure>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-head">
+      <p class="kicker">Service 05</p>
+      <h2>この事業でできること</h2>
+    </div>
+    <p class="lead-block">採用、教育、業務改善など、現場力と利益改善の両面から企業活動を支援します。</p>
+  </section>
+<section class="section">
+    <div class="section-head">
+      <p class="kicker">Point</p>
+      <h2>主なポイント</h2>
+    </div>
+    <ul class="clean-list"><li>全体最適の視点</li><li>採用・教育・業務改善支援</li><li>現場に合わせた改善提案</li></ul>
+  </section>
+<section class="section">
+    <div class="section-head">
+      <p class="kicker">Flow</p>
+      <h2>相談から開始まで</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><strong>01</strong><div><h3>要件整理</h3><p>必要な人材像、スキル、稼働条件、課題を整理します。</p></div></div>
+      <div class="step"><strong>02</strong><div><h3>提案・調整</h3><p>人材・教育・運用の観点から、最適な進め方を提示します。</p></div></div>
+      <div class="step"><strong>03</strong><div><h3>稼働・フォロー</h3><p>開始後も状況を確認し、必要な改善や追加支援を行います。</p></div></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-head">
+      <p class="kicker">Related Pages</p>
+      <h2>あわせてご覧ください</h2>
+    </div>
+    <div class="related"><a href="philosophy.html">Philosophy</a><a href="service.html">Service</a><a href="company.html">Company</a><a href="recruit.html">Recruit</a><a href="works.html">Works</a><a href="news.html">News</a><a href="contact.html">Contact</a></div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../precious_デザイン案ピンク.html"><img src="../images/precious_logo.png" alt="">precious</a>
+        <p>サイトマップに沿って展開した デザイン案ピンク の下層ページプロトタイプです。</p>
+      </div>
+      <div class="footer-cols">
+        <div><h3>Global</h3><a href="philosophy.html">Philosophy</a><a href="service.html">Service</a><a href="company.html">Company</a><a href="recruit.html">Recruit</a><a href="works.html">Works</a><a href="news.html">News</a><a href="contact.html">Contact</a></div>
+        <div><h3>Service</h3><a href="service-outsourcing.html">アウトソーシング事業</a><a href="service-it-school.html">ITスクール事業</a><a href="service-placement.html">職業紹介事業</a><a href="service-dispatch.html">人材派遣事業</a><a href="service-consulting.html">コンサルティング事業</a></div>
+        <div><h3>Candidate</h3><a href="recruit-training.html">研修・育成プログラム</a><a href="works-case.html">事例詳細</a><a href="category-seminar.html">カテゴリ: セミナー</a><a href="category-event.html">カテゴリ: イベント</a><a href="category-blog.html">カテゴリ: ブログ</a></div>
+        <div><h3>Footer</h3><a href="contact.html">Contact</a><a href="entry.html">Entry</a><a href="privacy-policy.html">Privacy Policy</a><a href="disclosure.html">Disclosure</a></div>
+      </div>
+    </div>
+    <div class="copy"><span>© 2026 precious inc.</span><span>デザイン案ピンク・Sitemap structure prototype</span></div>
+  </div>
+</footer>
+</body>
+</html>

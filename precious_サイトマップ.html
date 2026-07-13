@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社precious サイトマップ｜precious.ne.jp</title>
+<style>
+  :root{
+    --ink:#1d2733; --sub:#5b6875; --line:#c9d3dd; --bg:#f4f7fa;
+    --accent:#0e7c86; --accent-soft:#e3f1f2; --new:#d8532a; --new-soft:#fbe7df;
+    --card:#ffffff; --nav:#123040; --footer:#eef2f6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:48px 24px 80px;}
+  header.doc{border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:8px;}
+  .eyebrow{font-size:12px; letter-spacing:.22em; color:var(--accent); font-weight:700; text-transform:uppercase;}
+  h1{font-size:26px; margin:6px 0 4px; letter-spacing:.02em;}
+  .meta{font-size:13px; color:var(--sub);}
+  .meta b{color:var(--ink);}
+  .legend{display:flex; gap:18px; flex-wrap:wrap; margin:22px 0 30px; font-size:12.5px; color:var(--sub);}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .chip{display:inline-block; font-size:10.5px; font-weight:700; padding:1px 7px; border-radius:10px; line-height:1.7;}
+  .chip.exist{background:var(--accent-soft); color:var(--accent);}
+  .chip.new{background:var(--new-soft); color:var(--new);}
+  .chip.dyn{background:#eae4f5; color:#6a4fa3;}
+  .chip.opt{background:#fff4d6; color:#9a6b00;}
+  .node.opt{border:1.5px dashed #d9a52b; border-top-width:3px; background:#fff4d6;}
+  .optsummary{background:#fff4d6;border:1px solid #e6cf87;border-left:5px solid #d9a52b;border-radius:8px;
+    padding:12px 16px;margin:0 0 26px;font-size:12.5px;color:#5b4a1a;line-height:1.8;}
+  .optsummary b.h{color:#9a6b00;font-size:13px;}
+  .optsummary code{background:#fff;border:1px solid #e6cf87;border-radius:3px;padding:0 4px;}
+
+  section.block{margin:34px 0;}
+  .block-h{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .block-h .en{font-size:12px; letter-spacing:.2em; color:var(--accent); font-weight:700;}
+  .block-h h2{font-size:18px; margin:0;}
+
+  /* common bars */
+  .bar{border:1px solid var(--line); border-radius:8px; background:var(--card); padding:12px 16px; margin-bottom:10px;}
+  .bar.nav{background:var(--nav); color:#fff; border-color:var(--nav);}
+  .bar.footer{background:var(--footer);}
+  .bar-title{font-size:13px; font-weight:700; letter-spacing:.04em; margin-bottom:8px;}
+  .bar.nav .bar-title{color:#9fd6db;}
+  .navitems,.footitems{display:flex; flex-wrap:wrap; gap:8px;}
+  .navitems .n{background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); color:#fff; font-size:12.5px; padding:5px 12px; border-radius:5px;}
+  .footitems .f{background:#fff; border:1px solid var(--line); font-size:12px; padding:4px 11px; border-radius:5px; color:var(--sub);}
+
+  /* tree */
+  .tree{margin-top:6px;}
+  .root{
+    display:flex; flex-direction:column; align-items:center; margin-bottom:6px;
+  }
+  .node{
+    background:var(--card); border:1px solid var(--line); border-radius:9px;
+    padding:10px 14px; width:100%; position:relative;
+  }
+  .node.top{border:2px solid var(--nav); background:#fbfdfe; max-width:420px; text-align:center;}
+  .node .nm{font-size:14px; font-weight:700; display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .node.top .nm{justify-content:center;}
+  .node .slug{font-size:11.5px; color:var(--accent); font-family:"Consolas",monospace; margin-top:1px;}
+  .node .role{font-size:12px; color:var(--sub); margin-top:4px;}
+
+  /* level-1 grid connected under top */
+  .l1grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px 18px; margin-top:26px; position:relative;
+  }
+  .l1grid::before{content:""; position:absolute; top:-14px; left:50%; width:1px; height:14px; background:var(--line);}
+  .col{position:relative;}
+  .col::before{content:""; position:absolute; top:-14px; left:50%; width:1px; height:14px; background:var(--line);}
+  .node.l1{border-top:3px solid var(--accent);}
+  .children{margin:10px 0 0 14px; padding-left:16px; border-left:1.5px dashed var(--line);}
+  .child{position:relative; margin-top:8px;}
+  .child::before{content:""; position:absolute; left:-16px; top:16px; width:14px; height:1px; background:var(--line); border-top:1.5px dashed var(--line);}
+  .node.l2{background:#fbfdfe; padding:8px 12px;}
+  .node.l2 .nm{font-size:12.5px; font-weight:600;}
+
+  .note{font-size:12px; color:var(--sub); background:#fff; border:1px dashed var(--line); border-radius:8px; padding:10px 14px; margin-top:8px;}
+
+  /* table */
+  table{width:100%; border-collapse:collapse; font-size:12.5px; margin-top:4px; background:#fff;}
+  th,td{border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top;}
+  th{background:#eef4f5; font-weight:700; font-size:12px; letter-spacing:.03em;}
+  td.c{text-align:center; white-space:nowrap;}
+  tr:nth-child(even) td{background:#fafcfd;}
+  .foot{margin-top:40px; font-size:11.5px; color:var(--sub); border-top:1px solid var(--line); padding-top:14px;}
+  @media(max-width:820px){ .l1grid{grid-template-columns:1fr;} .l1grid::before,.col::before{display:none;} }
+  @media print{
+    @page{size:A4; margin:12mm 10mm;}
+    body{background:#fff;}
+    .wrap{max-width:none; padding:0;}
+    header.doc,.legend,.optsummary,.bar,.note,.node,.child,.col,tr{break-inside:avoid; page-break-inside:avoid;}
+    section.block{break-inside:auto; page-break-inside:auto;}
+    section.block:nth-of-type(2){break-before:page; page-break-before:always;}
+    .l1grid{break-inside:auto; page-break-inside:auto;}
+    .node{box-shadow:none;}
+    .foot{break-inside:avoid; page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="doc">
+    <div class="eyebrow">Sitemap ／ サイト構成図</div>
+    <h1>株式会社precious コーポレートサイト サイトマップ</h1>
+    <div class="meta">
+      対象: <b>https://precious.ne.jp/</b> ／ CMS: WordPress ／
+      構成基準日: <b>2026-07-01</b>（公開サイトマップXML実測）<br>
+      第2版: 2026-07-01 顧客面談議事録を反映（採用コンテンツ拡充・実績/事例ページ追加・ATS外部リンク方針・追加候補ページ整理）／
+      制作: 株式会社ITLINE ワイヤーフレーム課（インフォネット様 技術パートナー）
+    </div>
+  </header>
+
+  <div class="legend">
+    <span><span class="chip exist">既存</span> 現行サイトに存在するページ（流用）</span>
+    <span><span class="chip new">★新規</span> 新規作成が確定・合意済みのページ</span>
+    <span><span class="chip opt">◇追加候補</span> 面談で挙がった要望（予算・要件次第で追加）</span>
+    <span><span class="chip dyn">投稿</span> CMSで随時追加される動的ページ</span>
+  </div>
+
+  <!-- 追加候補サマリー -->
+  <div class="optsummary">
+    <b class="h">★ 今回範囲に含める面談追加ページ</b>　① <b>Works（事業実績・事例）</b> <code>/works/</code> … 派遣・育成事業の実績紹介・配属事例・プロジェクト例の独立ページ<br>
+    <b class="h">◇ 追加候補ページ（面談要望・予算次第で追加）</b>　<span style="color:#8a7550">— ツリー内ではアンバー破線ボックス（◇）で表示</span><br>
+    ① <b>研修・育成プログラムの流れ</b> <code>/recruit/training/</code>
+    ② <b>実績・事例（個別詳細）</b> <code>/works/{case}/</code>
+    ③ <b>Newsカテゴリ拡充</b> <code>/category/seminar/・/event/・/blog/</code> 等<br>
+    <span style="color:#8a7550">※Works一覧は議事録の「事例・プロジェクト例も含める」方針に合わせて★新規へ反映。個別詳細ページは掲載件数・原稿確定後に調整します。</span>
+  </div>
+
+  <!-- ============ 共通要素 ============ -->
+  <section class="block">
+    <div class="block-h"><span class="en">COMMON</span><h2>共通要素（全ページ）</h2></div>
+    <div class="bar nav">
+      <div class="bar-title">ヘッダー ／ グローバルナビゲーション</div>
+      <div class="navitems">
+        <span class="n">Philosophy</span><span class="n">Service</span><span class="n">Company</span>
+        <span class="n">Recruit</span><span class="n">Works</span><span class="n">News</span><span class="n">Contact</span>
+      </div>
+    </div>
+    <div class="bar footer">
+      <div class="bar-title">フッター</div>
+      <div class="footitems">
+        <span class="f">Contact（お問い合わせ）</span>
+        <span class="f">Entry（エントリー）</span>
+        <span class="f">Privacy Policy</span>
+        <span class="f">Disclosure（開示情報）</span>
+        <span class="f">Copyright</span>
+      </div>
+    </div>
+    <div class="note">サイト内検索機能: 現行サイトには<b>非搭載</b>（推定）。CTAは全ページ共通で「Contact（お問い合わせ）」「Entry（採用エントリー）」の2系統。</div>
+  </section>
+
+  <!-- ============ ツリー ============ -->
+  <section class="block">
+    <div class="block-h"><span class="en">STRUCTURE</span><h2>ページ階層ツリー</h2></div>
+    <div class="tree">
+      <div class="root">
+        <div class="node top">
+          <div class="nm">トップページ <span class="chip exist">既存</span></div>
+          <div class="slug">/</div>
+          <div class="role">サイトの顔。理念・5事業・採用・お知らせへの導線を集約するゲートウェイ。</div>
+        </div>
+      </div>
+
+      <div class="l1grid">
+
+        <!-- Philosophy -->
+        <div class="col">
+          <div class="node l1">
+            <div class="nm">Philosophy <span class="chip exist">既存</span></div>
+            <div class="slug">/philosophy/</div>
+            <div class="role">企業理念（ミッション／ビジョン）を訴求。</div>
+          </div>
+        </div>
+
+        <!-- Service -->
+        <div class="col">
+          <div class="node l1">
+            <div class="nm">Service <span class="chip exist">既存</span></div>
+            <div class="slug">/service/</div>
+            <div class="role">事業内容の総覧。5事業への導線ハブ（各事業詳細へ分岐）。</div>
+          </div>
+          <div class="children">
+            <div class="child"><div class="node l2">
+              <div class="nm">アウトソーシング事業 <span class="chip new">★新規</span></div>
+              <div class="slug">/service/outsourcing/</div>
+              <div class="role">事業詳細ページ（サービス内容・強み・事例）。</div>
+            </div></div>
+            <div class="child"><div class="node l2">
+              <div class="nm">ITスクール事業 <span class="chip new">★新規</span></div>
+              <div class="slug">/service/it-school/</div>
+              <div class="role">事業詳細ページ（カリキュラム・受講の流れ等）。</div>
+            </div></div>
+            <div class="child"><div class="node l2">
+              <div class="nm">職業紹介事業 <span class="chip new">★新規</span></div>
+              <div class="slug">/service/placement/</div>
+              <div class="role">事業詳細ページ（有料職業紹介 13-ユ-315770）。</div>
+            </div></div>
+            <div class="child"><div class="node l2">
+              <div class="nm">人材派遣事業 <span class="chip new">★新規</span></div>
+              <div class="slug">/service/dispatch/</div>
+              <div class="role">事業詳細ページ（労働者派遣 派13-316894）。</div>
+            </div></div>
+            <div class="child"><div class="node l2">
+              <div class="nm">コンサルティング事業 <span class="chip new">★新規</span></div>
+              <div class="slug">/service/consulting/</div>
+              <div class="role">事業詳細ページ（支援領域・アプローチ）。</div>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div class="col">
+          <div class="node l1">
+            <div class="nm">Company <span class="chip exist">既存</span></div>
+            <div class="slug">/company/</div>
+            <div class="role">会社概要（代表・設立・資本金・許認可番号等）。</div>
+          </div>
+        </div>
+
+        <!-- Recruit -->
+        <div class="col">
+          <div class="node l1">
+            <div class="nm">Recruit <span class="chip exist">既存</span></div>
+            <div class="slug">/recruit/</div>
+            <div class="role">採用トップ。会社・採用情報を案内し、応募は外部ATS（一括管理くん等）へ集約する方針。</div>
+          </div>
+          <div class="children">
+            <div class="child"><div class="node l2">
+              <div class="nm">一日の業務の流れ <span class="chip new">★新規</span></div>
+              <div class="slug">/recruit/workflow/</div>
+              <div class="role">入社後の1日の働き方をタイムラインで紹介（面談で合意）。</div>
+            </div></div>
+            <div class="child"><div class="node l2">
+              <div class="nm">社員インタビュー（3名） <span class="chip new">★新規</span></div>
+              <div class="slug">/recruit/interview/</div>
+              <div class="role">社員インタビュー一覧（3名を掲載／撮影は初期サービスに含む）。</div>
+            </div>
+            <div class="children">
+              <div class="child"><div class="node l2">
+                <div class="nm">インタビュー①〜③ <span class="chip new">★新規</span></div>
+                <div class="slug">/recruit/interview/01〜03/</div>
+                <div class="role">社員3名の個別インタビュー記事（各1ページ・計3P）。</div>
+              </div></div>
+            </div></div>
+            <div class="child"><div class="node l2">
+              <div class="nm">働く環境と制度 <span class="chip new">★新規</span></div>
+              <div class="slug">/recruit/environment/</div>
+              <div class="role">オフィス環境・福利厚生・各種制度の紹介。</div>
+            </div></div>
+            <div class="child"><div class="node l2 opt">
+              <div class="nm">研修・育成プログラムの流れ <span class="chip opt">◇追加候補</span></div>
+              <div class="slug">/recruit/training/</div>
+              <div class="role">育成事業を活かした研修フローを詳細紹介（面談要望・予算次第）。</div>
+            </div></div>
+            <div class="child"><div class="node l2">
+              <div class="nm">Entry（エントリー） <span class="chip exist">既存</span></div>
+              <div class="slug">/entry/</div>
+              <div class="role">応募フォーム。当面は既存フォームを流用し、将来は採用管理システム（一括管理くん/ATS）の求人サイトへ<b>外部リンク切替</b>の可能性＝要確認。</div>
+            </div>
+            <div class="children">
+              <div class="child"><div class="node l2">
+                <div class="nm">Entry完了 <span class="chip exist">既存</span></div>
+                <div class="slug">/entry-thanks/</div>
+                <div class="role">応募送信完了（サンクス）。※ATS外部リンク化した場合は不要になる可能性。</div>
+              </div></div>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- Works（事業実績）: 独立ページ -->
+        <div class="col">
+          <div class="node l1">
+            <div class="nm">Works（事業実績・事例） <span class="chip new">★新規</span></div>
+            <div class="slug">/works/</div>
+            <div class="role">人材派遣・育成事業の配属事例／プロジェクト例／実績を紹介する独立ページ。議事録要望に合わせて今回範囲に含め、採用の信頼醸成にも寄与。</div>
+          </div>
+          <div class="children">
+            <div class="child"><div class="node l2 opt">
+              <div class="nm">実績・事例（個別） <span class="chip opt">◇追加候補</span></div>
+              <div class="slug">/works/{case}/</div>
+              <div class="role">案件・配属事例の個別詳細（任意・件数は要件次第）。</div>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- News -->
+        <div class="col">
+          <div class="node l1">
+            <div class="nm">News <span class="chip exist">既存</span></div>
+            <div class="slug">/news/</div>
+            <div class="role">お知らせ／プレスリリース一覧。</div>
+          </div>
+          <div class="children">
+            <div class="child"><div class="node l2">
+              <div class="nm">News記事（個別） <span class="chip dyn">投稿</span></div>
+              <div class="slug">/{post_id}/ 例: /64/ /82/ /84/ /86/ /88/ /90/</div>
+              <div class="role">個別記事詳細。現状6件（CMSで随時追加）。</div>
+            </div></div>
+            <div class="child"><div class="node l2">
+              <div class="nm">カテゴリ: プレスリリース <span class="chip dyn">投稿</span></div>
+              <div class="slug">/category/pre-release/</div>
+              <div class="role">カテゴリ別記事一覧（アーカイブ）。</div>
+            </div></div>
+            <div class="child"><div class="node l2 opt">
+              <div class="nm">カテゴリ拡充 <span class="chip opt">◇追加候補</span></div>
+              <div class="slug">/category/seminar/, /event/, /blog/ 等</div>
+              <div class="role">セミナー案内／イベント／ブログ等にカテゴリ分け可能（面談で提案）。</div>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="col">
+          <div class="node l1">
+            <div class="nm">Contact <span class="chip exist">既存</span></div>
+            <div class="slug">/contact/</div>
+            <div class="role">お問い合わせフォーム。全ページ共通CTAの受け皿。</div>
+          </div>
+          <div class="children">
+            <div class="child"><div class="node l2">
+              <div class="nm">Contact完了 <span class="chip exist">既存</span></div>
+              <div class="slug">/contact-thanks/</div>
+              <div class="role">問い合わせ送信完了（サンクス）。</div>
+            </div></div>
+          </div>
+        </div>
+
+      </div><!-- /l1grid -->
+    </div>
+
+    <div class="note" style="margin-top:22px;">
+      <b>フッター専用ページ（グローバルナビ外）</b>：
+      <span class="chip exist">既存</span> Privacy Policy <code>/privacy-policy/</code>（プライバシーポリシー）　／
+      <span class="chip exist">既存</span> Disclosure <code>/disclosure/</code>（労働者派遣・有料職業紹介の法定開示情報）
+    </div>
+  </section>
+
+  <!-- ============ ページ一覧表 ============ -->
+  <section class="block">
+    <div class="block-h"><span class="en">INDEX</span><h2>ページ一覧表</h2></div>
+    <table>
+      <thead>
+        <tr><th style="width:34px">No</th><th>ページ名</th><th>URLスラッグ</th><th style="width:96px">階層</th><th style="width:70px">新規/既存</th><th>備考・役割</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="c">1</td><td>トップページ</td><td><code>/</code></td><td>第0階層</td><td class="c">既存</td><td>各セクションへの導線ハブ</td></tr>
+        <tr><td class="c">2</td><td>Philosophy（理念）</td><td><code>/philosophy/</code></td><td>第1階層</td><td class="c">既存</td><td>ミッション／ビジョン</td></tr>
+        <tr><td class="c">3</td><td>Service（事業内容）</td><td><code>/service/</code></td><td>第1階層</td><td class="c">既存</td><td>5事業の総覧・各詳細への導線ハブ</td></tr>
+        <tr><td class="c">3-1</td><td>アウトソーシング事業</td><td><code>/service/outsourcing/</code></td><td>第2階層</td><td class="c">★新規</td><td>事業詳細ページ</td></tr>
+        <tr><td class="c">3-2</td><td>ITスクール事業</td><td><code>/service/it-school/</code></td><td>第2階層</td><td class="c">★新規</td><td>事業詳細ページ</td></tr>
+        <tr><td class="c">3-3</td><td>職業紹介事業</td><td><code>/service/placement/</code></td><td>第2階層</td><td class="c">★新規</td><td>事業詳細ページ（13-ユ-315770）</td></tr>
+        <tr><td class="c">3-4</td><td>人材派遣事業</td><td><code>/service/dispatch/</code></td><td>第2階層</td><td class="c">★新規</td><td>事業詳細ページ（派13-316894）</td></tr>
+        <tr><td class="c">3-5</td><td>コンサルティング事業</td><td><code>/service/consulting/</code></td><td>第2階層</td><td class="c">★新規</td><td>事業詳細ページ</td></tr>
+        <tr><td class="c">4</td><td>Company（会社概要）</td><td><code>/company/</code></td><td>第1階層</td><td class="c">既存</td><td>代表・設立・資本金・許認可番号</td></tr>
+        <tr><td class="c">5</td><td>Recruit（採用情報）</td><td><code>/recruit/</code></td><td>第1階層</td><td class="c">既存</td><td>採用トップ・募集要項、下記へ誘導</td></tr>
+        <tr><td class="c">5-1</td><td>一日の業務の流れ</td><td><code>/recruit/workflow/</code></td><td>第2階層</td><td class="c">★新規</td><td>1日の働き方をタイムライン紹介</td></tr>
+        <tr><td class="c">5-2</td><td>社員インタビュー（一覧）</td><td><code>/recruit/interview/</code></td><td>第2階層</td><td class="c">★新規</td><td>3名を掲載する一覧ページ</td></tr>
+        <tr><td class="c">5-2a</td><td>インタビュー①〜③</td><td><code>/recruit/interview/01〜03/</code></td><td>第3階層</td><td class="c">★新規</td><td>社員3名の個別記事（計3ページ）</td></tr>
+        <tr><td class="c">5-3</td><td>働く環境と制度</td><td><code>/recruit/environment/</code></td><td>第2階層</td><td class="c">★新規</td><td>環境・福利厚生・各種制度</td></tr>
+        <tr><td class="c">5-4</td><td>研修・育成プログラムの流れ</td><td><code>/recruit/training/</code></td><td>第2階層</td><td class="c">◇追加候補</td><td>面談要望・予算次第。育成事業の研修フロー</td></tr>
+        <tr><td class="c">6</td><td>Entry（エントリー）</td><td><code>/entry/</code></td><td>第2階層</td><td class="c">既存</td><td>当面既存フォーム、将来ATS（一括管理くん等）の求人サイトへ外部リンク切替の可能性＝要確認</td></tr>
+        <tr><td class="c">7</td><td>Entry完了</td><td><code>/entry-thanks/</code></td><td>第3階層</td><td class="c">既存</td><td>応募送信完了サンクス</td></tr>
+        <tr><td class="c">7A</td><td>Works（事業実績・事例）</td><td><code>/works/</code></td><td>第1階層</td><td class="c">★新規</td><td>事業実績の独立ページ。派遣・育成の配属事例／プロジェクト例／実績（今回範囲に含む）</td></tr>
+        <tr><td class="c">7A-1</td><td>実績・事例（個別）</td><td><code>/works/{case}/</code></td><td>第2階層</td><td class="c">◇追加候補</td><td>案件・配属事例の個別詳細（任意・件数は要件次第）</td></tr>
+        <tr><td class="c">8</td><td>News（お知らせ）</td><td><code>/news/</code></td><td>第1階層</td><td class="c">既存</td><td>記事一覧</td></tr>
+        <tr><td class="c">9</td><td>News記事（個別）</td><td><code>/{post_id}/</code></td><td>第2階層</td><td class="c">投稿</td><td>現状6件：/64/ /82/ /84/ /86/ /88/ /90/</td></tr>
+        <tr><td class="c">10</td><td>カテゴリ: プレスリリース</td><td><code>/category/pre-release/</code></td><td>第2階層</td><td class="c">投稿</td><td>カテゴリ別アーカイブ</td></tr>
+        <tr><td class="c">10-1</td><td>カテゴリ拡充（セミナー/イベント/ブログ等）</td><td><code>/category/seminar/ 他</code></td><td>第2階層</td><td class="c">◇追加候補</td><td>面談で提案。カテゴリ分けで運用強化</td></tr>
+        <tr><td class="c">11</td><td>Contact（お問い合わせ）</td><td><code>/contact/</code></td><td>第1階層</td><td class="c">既存</td><td>問い合わせフォーム（共通CTA）</td></tr>
+        <tr><td class="c">12</td><td>Contact完了</td><td><code>/contact-thanks/</code></td><td>第2階層</td><td class="c">既存</td><td>送信完了サンクス</td></tr>
+        <tr><td class="c">13</td><td>Privacy Policy</td><td><code>/privacy-policy/</code></td><td>フッター</td><td class="c">既存</td><td>プライバシーポリシー</td></tr>
+        <tr><td class="c">14</td><td>Disclosure（開示情報）</td><td><code>/disclosure/</code></td><td>フッター</td><td class="c">既存</td><td>派遣・職業紹介の法定開示</td></tr>
+      </tbody>
+    </table>
+    <div class="note" style="margin-top:14px;">
+      <b>集計</b>：既存 12 ＋ <b>★新規（確定）12</b>（Service詳細5＋Recruit配下6：一日の業務の流れ／社員インタビュー一覧＋個別3名／働く環境と制度＋Works事例一覧）＝固定 24ページ ＋ <b>◇追加候補</b>（研修の流れ／実績・事例の個別詳細／Newsカテゴリ拡充）＋ 動的（投稿/カテゴリ）。<br>
+      <b>2026-07-01 面談反映メモ</b>：①クライアント正式名称は現行会社概要どおり<b>「株式会社precious（プレシャス）」</b>（議事録音声起こしの「プレッシャーズ」は誤認識）。②<b>採用応募は外部ATS（一括管理くん等）へ集約方針</b>＝当面Entryフォーム流用→将来外部リンク切替の可能性（要確認）。③Service個別詳細は「1ページ集約が基本／個別化は要望・追加費用」の位置づけで、precious様要望により★計上。④「事例・スケジュール等はコーポレート/採用で必須級」「事例も含める」との合意により、Works（事業実績・事例）を★新規に変更。⑤予算感 約100万円前後（面談時）＝限られた予算内で優先度調整、URLスラッグは提案例で確定前。
+    </div>
+  </section>
+
+  <div class="foot">
+    出典: precious.ne.jp 公開サイトマップ（wp-sitemap.xml 系）実測・2026-07-01時点 ／ 会社概要記載事項に基づく。
+    株式会社ITLINE ワイヤーフレーム課 制作。
+  </div>
+
+</div>
+</body>
+</html>
